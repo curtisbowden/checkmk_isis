@@ -67,8 +67,8 @@ register.snmp_section(
     fetch=SNMPTree(
         base='.1.3.6.1.2.1.138.1.6',
         oids=[
-            '1.1.2', #ISIS-MIB::isisISAdjState
-            '3.1.3', #ISIS-MIB::isisISAdjIPAddrAddress
+            '1.1.2',  # ISIS-MIB::isisISAdjState
+            '3.1.3',  # ISIS-MIB::isisISAdjIPAddrAddress
         ],
     ),
     parse_function=parse_isis_adjacency,
