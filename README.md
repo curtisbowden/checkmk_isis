@@ -6,7 +6,7 @@
 
 ## Description
 
-This is a template to develop Checkmk Extensions
+ * isis_adjacency discovers and checks the status of ISIS adjacency for ISIS-MIB
 
 ## Development
 
