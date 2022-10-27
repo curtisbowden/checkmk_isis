@@ -2,6 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/ubuntu
 {
 	"name": "Checkmk",
+
 	"build": {
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick an Ubuntu version: focal, bionic
@@ -9,7 +10,7 @@
 	},
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
+	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 
@@ -25,8 +26,13 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": ".devcontainer/symlink.sh",
 
+
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "cmk",
+
+	// Uncomment appPort and postStartCommand to start cmk site and web gui with a simple password
+	//"appPort": ["127.0.0.1:5000:5000"],
+	//"postStartCommand": "htpasswd -b /omd/sites/cmk/etc/htpasswd cmkadmin cmkadmin && omd start cmk",
 
 	"remoteEnv": {
 		"PATH": "${containerEnv:PATH}:/omd/sites/cmk/bin:/omd/sites/cmk/local/lib/python3/bin/",
@@ -35,4 +41,5 @@
 		"CMK_SITE_ID": "cmk",
 		"WORKSPACE": "${containerWorkspaceFolder}"
 	}
+
 }
