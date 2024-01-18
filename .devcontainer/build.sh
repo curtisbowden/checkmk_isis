@@ -8,8 +8,8 @@ mkp -v pack $NAME
 
 # Set Outputs for GitHub Workflow steps
 if [ -n "$GITHUB_WORKSPACE" ]; then
-    echo "::set-output name=pkgfile::$(ls *.mkp)"
-    echo "::set-output name=pkgname::${NAME}"
+    echo "pkgfile=$(ls *.mkp)" >> $GITHUB_OUTPUT
+    echo "pkgname=${NAME}" >> $GITHUB_OUTPUT
     VERSION=$(python -c 'print(eval(open("package").read())["version"])')
-    echo "::set-output name=pkgversion::$VERSION"
+    echo "pkgversion=$VERSION"  >> $GITHUB_OUTPUT
 fi
