@@ -4,6 +4,7 @@
 # Checks based on the ISIS-MIB.
 #
 # Copyright (C) 2022 Curtis Bowden <curtis.bowden@gmail.com>
+# Copyright (C) 2024 Stephan Fuhrmann <stephan.fuhrmann@ionos.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
