@@ -9,7 +9,7 @@
 
 ## Description
 
- * isis_adjacency discovers and checks the status of ISIS adjacency for ISIS-MIB
+ * isis_adjacency discovers and checks the status of IS-IS adjacency for [ISIS-MIB](https://datatracker.ietf.org/doc/html/rfc4444)
 
 ## Development
 

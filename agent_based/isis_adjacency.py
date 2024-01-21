@@ -120,7 +120,7 @@ def check_isis_adjacency(item, section):
 
 register.check_plugin(
     name='isis_adjacency',
-    service_name='ISIS Status Neighbor %s',
+    service_name='IS-IS Status Neighbor %s',
     discovery_function=discover_isis_adjacency,
     check_function=check_isis_adjacency,
 )
