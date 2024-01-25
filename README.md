@@ -1,7 +1,7 @@
 # Checkmk extension for ISIS-MIB
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/curtisbowden/checkmk_isis?label=version&logo=git&sort=semver)
-
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 ![build](https://github.com/curtisbowden/checkmk_isis/workflows/build/badge.svg)
 ![flake8](https://github.com/curtisbowden/checkmk_isis/workflows/Lint/badge.svg)
 ![pytest](https://github.com/curtisbowden/checkmk_isis/workflows/pytest/badge.svg)
