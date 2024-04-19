@@ -10,7 +10,7 @@
 ## Description
 
  * isis_adjacency discovers and checks the status of IS-IS adjacency for [ISIS-MIB](https://datatracker.ietf.org/doc/html/rfc4444)
-
+ * service discovery can be limited to IS-IS neighbors within specific subnets
 ## Development
 
 For the best development experience use [VSCode](https://code.visualstudio.com/) with the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. This maps your workspace into a checkmk docker container giving you access to the python environment and libraries the installed extension has.
