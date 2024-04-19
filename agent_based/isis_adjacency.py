@@ -28,16 +28,18 @@
 # ISIS-MIB::isisISAdjIPAddrAddress.1096.1.1 = Hex-STRING: 0A 00 00 01
 # ISIS-MIB::isisISAdjIPAddrAddress.1096.1.2 = Hex-STRING: FE 80 00 00 00 00 00 00 43 A8 BC 11 83 9C 88 2C
 
-from .agent_based_api.v1 import (
+
+from typing import List, Dict, Union
+import ipaddress
+from cmk.base.plugins.agent_based.agent_based_api.v1 import (
     register,
     SNMPTree,
     exists,
     Service,
     Result,
     State,
+    ServiceLabel
 )
-
-import ipaddress
 
 
 def parse_isis_adjacency(string_table):
@@ -90,9 +92,46 @@ ISIS_ADJ_STATE_MAP = {
 }
 
 
-def discover_isis_adjacency(section):
-    for service in section.keys():
-        yield Service(item=service)
+class ISISAdjacencyDiscoveryParams:
+    def __init__(self, params) -> None:
+        self.subnets: List[ipaddress.ip_network] = [
+            ipaddress.ip_network(subnet)
+            for subnet in params.get("subnets")["subnets"]
+        ]
+        self.negate: bool = params.get("subnets")["negate"]
+        self.my_labels: Union[List[ServiceLabel], None] = [
+            ServiceLabel(k, v)
+            for k, v in params.get("labels").items()
+        ] if params.get("labels") else None
+
+
+    def discover(self, ip_address: str) -> bool:
+        ip = ipaddress.ip_address(ip_address)
+        for subnet in self.subnets:
+            print("subnet: ", subnet, "ip: ", ip, "negate: ", self.negate)
+            if ip in subnet:
+                return not self.negate
+        return self.negate
+
+    @property
+    def labels(self) -> Union[List[ServiceLabel], None]:
+        return self.my_labels
+
+
+def discover_isis_adjacency(params: List, section: Dict):
+    discovery_rules = [
+        ISISAdjacencyDiscoveryParams(param) for param in params if param.get("subnets")
+    ]
+    for name, service in section.items():
+        if discovery_rules:
+            for rule in discovery_rules:
+                if rule.discover(
+                    service.get('Neighbor IPv4', service.get('Neighbor IPv6', ''))
+                ):
+                    yield Service(item=name, labels=rule.labels)
+                    break
+        else:
+            yield Service(item=name)
 
 
 def check_isis_adjacency(item, section):
@@ -120,4 +159,7 @@ register.check_plugin(
     service_name='IS-IS Status Neighbor %s',
     discovery_function=discover_isis_adjacency,
     check_function=check_isis_adjacency,
+    discovery_ruleset_type=register.RuleSetType.ALL,
+    discovery_default_parameters={},
+    discovery_ruleset_name="isis_adjacency_discovery",
 )
