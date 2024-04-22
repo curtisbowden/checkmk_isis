@@ -5,7 +5,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick an Ubuntu version: focal, bionic
-		"args": { "VARIANT": "2.2.0-latest" }
+		"args": { "VARIANT": "2.1.0-latest" }
 	},
 
 	"customizations": {
@@ -35,12 +35,12 @@
 	"remoteUser": "cmk",
 
 	// Uncomment appPort and postStartCommand to start cmk site and web gui with a simple password
-	//"appPort": ["127.0.0.1:5000:5000"],
-	//"postStartCommand": "htpasswd -b /omd/sites/cmk/etc/htpasswd cmkadmin cmkadmin && omd start cmk",
+	// "appPort": ["127.0.0.1:5000:5000"],
+    // "postStartCommand": "htpasswd -b /omd/sites/cmk/etc/htpasswd cmkadmin cmkadmin && omd start cmk",
 
 	// Uncomment to use with podman
-	//"containerUser": "cmk",
-	//"runArgs": ["--userns=keep-id"],
+	// "containerUser": "cmk",
+	// "runArgs": ["--userns=keep-id"],
 
 	"remoteEnv": {
 		"PATH": "/omd/sites/cmk/bin:/omd/sites/cmk/local/lib/python3/bin/:${containerEnv:PATH}",
