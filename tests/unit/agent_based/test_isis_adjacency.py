@@ -21,12 +21,16 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import pytest  # type: ignore[import]
+
+
 from cmk.base.plugins.agent_based.agent_based_api.v1 import (
     Result,
     Service,
     State,
     ServiceLabel
 )
+
+
 from cmk.base.plugins.agent_based import isis_adjacency
 
 
@@ -46,10 +50,12 @@ def test_parse_isis_adjacency(string_table, result):
 
 
 TEST_DISCOVERY_SECTION = {
-        '10.0.0.1': {'Neighbor IPv4': '10.0.0.1', 'State': 3},
-        '192.168.0.1': {'Neighbor IPv4': '192.168.0.1', 'State': 3},
-        'fe80::8c21:b316:7d4e:a9dd': {'Neighbor IPv6': 'fe80::8c21:b316:7d4e:a9dd', 'State': 3}
-    }
+    '10.0.0.1': {'Neighbor IPv4': '10.0.0.1', 'State': 3},
+    '192.168.0.1': {'Neighbor IPv4': '192.168.0.1', 'State': 3},
+    'fe80::8c21:b316:7d4e:a9dd': {'Neighbor IPv6': 'fe80::8c21:b316:7d4e:a9dd', 'State': 3}
+}
+
+
 @pytest.mark.parametrize('params, section, result', [
     (
         [],

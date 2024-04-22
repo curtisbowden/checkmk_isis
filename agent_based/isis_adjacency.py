@@ -104,7 +104,6 @@ class ISISAdjacencyDiscoveryParams:
             for k, v in params.get("labels").items()
         ] if params.get("labels") else None
 
-
     def discover(self, ip_address: str) -> bool:
         ip = ipaddress.ip_address(ip_address)
         for subnet in self.subnets:

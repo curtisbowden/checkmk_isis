@@ -26,6 +26,7 @@ def _validate_spec_subnet(value: List, varprefix) -> bool:
             )
     return True
 
+
 def _parameter_valuespec_isis_adjacency_discovery() -> Dictionary:
     return Dictionary(
         required_keys=["subnets"],
