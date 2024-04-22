@@ -11,7 +11,7 @@
         'inventory': [],
         'notifications': [],
         'pnp-templates': [],
-        'web': []
+        'web': ['isis_adjacency_params.py']
     },
     'name': 'isis',
     'title': 'Check based on ISIS-MIB for monitoring status.',
