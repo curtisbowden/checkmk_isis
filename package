@@ -11,7 +11,7 @@
         'inventory': [],
         'notifications': [],
         'pnp-templates': [],
-        'web': ['plugins\/wato\/isis_adjacency_params.py']
+        'web': ['plugins/wato/isis_adjacency_params.py']
     },
     'name': 'isis',
     'title': 'Check based on ISIS-MIB for monitoring status.',
